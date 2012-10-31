@@ -1,0 +1,15 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+.settings/
+.project
+.classpath
+build/
+
+# system Files #
+.DS_Store
+Thumbs.db
