@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ComboGrid Zero-Configuration demo</title>
+<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smoothness/jquery-ui-1.8.9.custom.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smoothness/jquery.ui.combogrid.css"/>
+<script type="text/javascript" src="resources/jquery/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="resources/jquery/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.ui.combogrid-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function(){
+	$( "#project" ).combogrid({
+		debug:true,
+		resetButton:true,
+		searchButton:true,
+		colModel: [{'columnName':'id','width':'10','label':'id'}, {'columnName':'name','width':'45','label':'title'},{'columnName':'author','width':'45','label':'author'}],
+		url: 'server.php',
+		select: function( event, ui ) {
+			$( "#project" ).val( ui.item.name );
+			return false;
+		}
+	});
+});
+</script>
+</head>
+<body>
+	<div>
+			<code>jQuery(document).ready(function(){</code><br/>
+			<code style="padding-left:10px;">$( "#project" ).combogrid({</code><br/>
+			<code style="padding-left:20px;">debug:true,</code><br/>
+			<code style="padding-left:20px;">searchButton:true,</code><br/>
+			<code style="padding-left:20px;">resetButton:true,</code><br/>
+			<code style="padding-left:20px;">colModel: [{'columnName':'id','width':'10','label':'id'},</code><br/>
+			<code style="padding-left:97px;">{'columnName':'name','width':'45','label':'title'},</code><br/>
+			<code style="padding-left:97px;">{'columnName':'author','width':'45','label':'author'}],<code><br/>
+			<code style="padding-left:20px;">url: '/server.php',</code><br/>
+			<code style="padding-left:20px;">//"select item" event handler to set input field</code><br/>
+			<code style="padding-left:20px;">select: function( event, ui ) {</code><br/>
+			<code style="padding-left:30px;">$( "#project" ).val( ui.item.name );</code><br/>
+			<code style="padding-left:30px;">return false;</code><br/>
+			<code style="padding-left:20px;">}</code><br/>
+			<code style="padding-left:10px;">});</code><br/>
+			<code>});</code><br/>
+			<p>Click on the search button to open the menu. After select an item click on the reset button to reset field.</p><br/>
+		<div style="float:left"><input size="30" id="project"/></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ComboGrid Zero-Configuration demo</title>
+<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smoothness/jquery-ui-1.8.9.custom.css"/>
+<script type="text/javascript" src="resources/jquery/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="resources/jquery/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jqueryui.com/themeroller/themeswitchertool/"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smoothness/jquery.ui.combogrid.css"/>
+<script type="text/javascript" src="resources/plugin/jquery.ui.combogrid-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function(){
+	$('#switcher').themeswitcher({
+		loadTheme:"Smoothness"
+	});
+	$( "#project" ).combogrid({
+		url: 'server.php',
+		debug:true,
+    munit: 'px',
+		searchButton: true,
+		colModel: [{'columnName':'id','width':'100','label':'id'}, {'columnName':'name','width':'200','label':'title'},{'columnName':'author','width':'200','label':'author'}],
+		select: function( event, ui ) {
+			$( "#project" ).val( ui.item.name );
+			return false;
+		}
+	});
+	$( "#project2" ).combogrid({
+		url: 'server.php',
+		debug:true,
+		searchButton: true,
+		resetButton: true,
+		colModel: [{'columnName':'id','width':'10','label':'id'}, {'columnName':'name','width':'60','label':'title'},{'columnName':'author','width':'30','label':'author'}],
+		select: function( event, ui ) {
+			$( "#project2" ).val( ui.item.name );
+			return false;
+		}
+	});
+});
+</script>
+</head>
+<body>
+	<div>
+		<div style="float:left"><input size="30" id="project"/></div><br/>&nbsp;<br/>
+		<div style="float:left"><input size="30" id="project2"/></div>
+		<div id="switcher" style="float:right"></div>
+	</div>
+</body>
+</html>

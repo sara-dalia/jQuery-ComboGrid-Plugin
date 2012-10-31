@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ComboGrid test1</title>
+<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smoothness/jquery-ui-1.8.9.custom.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smoothness/jquery.ui.combogrid.css"/>
+<script type="text/javascript" src="resources/jquery/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="resources/jquery/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jqueryui.com/themeroller/themeswitchertool/"></script>
+<script type="text/javascript" src="resources/plugin/jquery.ui.combogrid-1.6.2.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.i18n.properties-1.0.9.js"></script><script>
+$(function() {
+	jQuery.i18n.properties({
+	    name:'combogrid', 
+	    path:'resources/i18n/', 
+	    mode:'both',
+ 	    language: 'en'
+	});
+});
+jQuery(document).ready(function(){
+	$('#switcher').themeswitcher({
+		loadTheme:"smoothness"
+	});
+	$( "#project" ).combogrid({
+		debug:true,
+		i18n: true,
+		colModel: [{'columnName':'id','width':'10','label':'id'}, {'columnName':'name','width':'45','label':'title'}, {'columnName':'author','width':'45','label':'author'}],
+		url: 'server.php',
+		select: function( event, ui ) {
+			$( "#project" ).val( ui.item.name );
+			return false;
+		}
+	});
+	$('#language').bind('change', function() {
+		lang = $('#language').val();
+		jQuery.i18n.properties({
+	    name:'combogrid', 
+	    path:'resources/i18n/', 
+	    mode:'both',
+ 	    language: lang
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<div>
+		<div style="float:left"><input size="30" id="project"/></div>
+		<div id="switcher" style="float:right"></div>
+		<select id='language'>
+			<option value='en' role='option'>English</option>
+			<option value='it' role='option'>Italian</option>
+			<option value='' role='option'>Default(en)</option>
+		</select>
+	</div>
+</body>
+</html>

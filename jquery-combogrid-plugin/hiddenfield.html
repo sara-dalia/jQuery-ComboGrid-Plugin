@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ComboGrid Zero-Configuration demo</title>
+<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smoothness/jquery-ui-1.8.9.custom.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smoothness/jquery.ui.combogrid.css"/>
+<script type="text/javascript" src="resources/jquery/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="resources/jquery/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.ui.combogrid-1.6.2.js"></script>
+<script>
+jQuery(document).ready(function(){
+	//"keyup" event handler to reset input fields
+	$( "#project" ).live('keyup', function(e){
+		//Improved with keycode checking to prevent extra typing after select
+		var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+		var keyCode = $.ui.keyCode;
+		if(key != keyCode.ENTER && key != keyCode.LEFT && key != keyCode.RIGHT && key != keyCode.DOWN) {
+			$('#project-id').val("");
+		}
+	});
+	$( "#project" ).combogrid({
+		debug:true,
+		colModel: [{'columnName':'id','hide':true,'width':'10','label':'id'}, {'columnName':'name','width':'45','label':'title'},{'columnName':'author','width':'45','label':'author'}],
+		url: 'server.php',
+		//"select item" event handler to set input fields
+		select: function( event, ui ) {
+			$( "#project" ).val( ui.item.name );
+			$( "#project-id" ).val( ui.item.id );
+			return false;
+		}
+	});
+});
+</script>
+</head>
+<body>
+	<div>
+		<div style="float:left">
+			<code>jQuery(document).ready(function(){</code><br/>
+			<code style="padding-left:10px;">//"keyup" event handler to reset input fields</code><br/>
+			<code style="padding-left:10px;">$( "#project" ).live('keyup', function(e){</code><br/>
+			<code style="padding-left:20px;">//Improved with keycode checking to prevent extra typing after select</code><br/>
+			<code style="padding-left:20px;">var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;</code><br/>
+			<code style="padding-left:20px;">var keyCode = $.ui.keyCode;</code><br/>
+			<code style="padding-left:20px;">if(key != keyCode.ENTER && key != keyCode.LEFT && key != keyCode.RIGHT) {</code><br/>
+			<code style="padding-left:20px;">$('#project-id').val("");</code><br/>
+			<code style="padding-left:20px;">}</code><br/>
+			<code style="padding-left:10px;">});</code><br/>
+			<code style="padding-left:10px;">$( "#project" ).combogrid({</code><br/>
+			<code style="padding-left:20px;">debug:true,</code><br/>
+			<code style="padding-left:20px;">colModel: [{'columnName':'id','width':'10','label':'id'},</code><br/>
+			<code style="padding-left:97px;">{'columnName':'name','width':'45','label':'title'},</code><br/>
+			<code style="padding-left:97px;">{'columnName':'author','width':'45','label':'author'}],<code><br/>
+			<code style="padding-left:20px;">url: '/server.php',</code><br/>
+			<code style="padding-left:20px;">//"select item" event handler to set input fields</code><br/>
+			<code style="padding-left:20px;">select: function( event, ui ) {</code><br/>
+			<code style="padding-left:30px;">$( "#project" ).val( ui.item.name );</code><br/>
+			<code style="padding-left:30px;">$( "#project-id" ).val( ui.item.id );</code><br/>
+			<code style="padding-left:30px;">return false;</code><br/>
+			<code style="padding-left:20px;">}</code><br/>
+			<code style="padding-left:10px;">});</code><br/>
+			<code>});</code><br/>
+			<p>Type "j" to open the menu. After select an item click "DEL" keyboard button or try typing something else to reset fields.</p><br/>
+			<input size="4" readonly="readonly" type="text" id="project-id"/>
+			<input size="30" id="project"/>
+		</div>
+	</div>
+</body>
+</html>
